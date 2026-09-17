@@ -98,6 +98,25 @@ Open [`examples/web-app.html`](examples/web-app.html) locally to try the complet
 
 ### 1. Install
 
+**Recommended: Install from fork with security hardening** (update checks & brands capture disabled by default):
+
+```bash
+# Get your fork's commit SHA
+git rev-parse HEAD  # Copy the output
+
+# Install from fork at specific commit
+npm install archify@github:YourUsername/archify#<commit-sha>
+```
+
+Verify installation:
+```bash
+npm list archify
+```
+
+#### Alternative: Install from upstream
+
+For the official upstream version (with update checks enabled by default):
+
 ```bash
 npx skills add tt-a1i/archify -g
 ```
