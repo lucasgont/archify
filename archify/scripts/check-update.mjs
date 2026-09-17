@@ -1634,7 +1634,8 @@ export async function acknowledgeUpdate({
 }
 
 async function runCli() {
-  if (process.env.ARCHIFY_UPDATE_CHECK_DISABLED === '1') return silent('disabled');
+  // FORK: Update checks disabled by default for security (Lucas fork)
+  if (process.env.ARCHIFY_UPDATE_CHECK_DISABLED !== '0') return silent('disabled');
   const argumentsList = process.argv.slice(2);
   if (argumentsList.length === 0) return checkForUpdate();
   if (argumentsList.length === 2 && argumentsList[0] === '--ack') {

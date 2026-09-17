@@ -1531,6 +1531,11 @@ async function commandBrands(args) {
   if (unknown.length) fail(`Unknown brands option "${unknown[0]}".`);
   const positional = args.filter((arg) => arg !== '--json');
   if (positional[0] === 'capture') {
+    // FORK: brands capture disabled by default for security (Lucas fork)
+    // Set ARCHIFY_BRANDS_CAPTURE_ENABLED=1 to allow network requests to capture logos
+    if (process.env.ARCHIFY_BRANDS_CAPTURE_ENABLED !== '1') {
+      fail('brands capture is disabled for security. To enable it, set: ARCHIFY_BRANDS_CAPTURE_ENABLED=1');
+    }
     if (positional.length !== 2) fail('Usage: archify brands capture <url> [--json]');
     const { captureBrandReference } = await import('../renderers/shared/brand-marks.mjs');
     let capture;
